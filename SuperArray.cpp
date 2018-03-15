@@ -19,6 +19,8 @@ SuperArray::SuperArray(const int begIndex, const unsigned int capacity)
 	arr = new int[capacity];
     SuperArray::capacity = capacity;
 	// Other info below
+    lowIndex = begIndex;
+    highIndex = begIndex + capacity - 1;
 }
 
 /*!
@@ -36,10 +38,36 @@ string arrayToString(const SuperArray& s)
 {
     stringstream ss;
 
-    for(int i = 0; i < s.length(); i++)
+    //To Do: Change 5 to s.length()
+    for(int i = 0; i < 5; i++)
     {
-        ss << s.arr[i]; << " ";
+         ss << s.arr[i] << " ";
     }
     string s1 = ss.str(); //build a string from the stream of chars
+    cout << s1 << endl;
+    size_t found;
+    found = s1.find_last_not_of(" ");
+    if(found != string::npos)
+        s1.erase(found + 1);
+    else
+        s1.clear();     // whitespace
     return s1;
+}
+/*!
+ * Overload [ ] operator. Translates user's index to the real index
+ * @param: index User's index
+ * @return: Real index
+ * */
+int &SuperArray::operator[](const int index)
+{
+    int realIndex;
+    if(lowIndex == 0)
+    {
+        realIndex = index;
+    }
+    else
+    {
+        realIndex = index - lowIndex;
+    }
+    return arr[realIndex];
 }
