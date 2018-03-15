@@ -25,6 +25,22 @@ public:
 
 	int &operator[](const int index);
 	friend string arrayToString(const SuperArray& s);
+
+	int *getArr() const;
+
+	void setArr(int *arr);
+
+	int getLowIndex() const;
+
+	void setLowIndex(int lowIndex);
+
+	int getHighIndex() const;
+
+	void setHighIndex(int highIndex);
+
+	int getCapacity() const;
+
+	void setCapacity(int capacity);
 };
 
 
